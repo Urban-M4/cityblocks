@@ -28,7 +28,7 @@ Data is downloaded in folder where the command is executed.
 
 
 ## QGIS styling
-Then, import the dataset in QGIS and visualize it. We created a QGIS styling file [cityblocks_LCZ.qml](\qgis_files\cityblocks_LCZ.qml), which you can load as follows:
+Then, import the dataset in QGIS and visualize it. We created a QGIS styling file [cityblocks_LCZ.qml](qgis_files/cityblocks_LCZ.qml), which you can load as follows:
 
 1. Load layer in [QGIS](https://qgis.org/) (we used 3.34.8 LTR)
 ![Load layer in QGIS](images/1.png)
