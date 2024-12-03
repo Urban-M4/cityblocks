@@ -10,7 +10,11 @@ dependencies = [
     "numpy",
     "rasterio",
     "shapely",
+    "click",
 ]
+authors = [
+  {name = "Peter Kalverla", email = "p.kalverla@esciencecenter.nl"},
+  {name = "Maurice de Kleijn", email = "m.dekleijn@esciencecenter.nl"},
 
 [project.scripts]
 cityblocks = "cityblocks.cli:cli"

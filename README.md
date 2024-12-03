@@ -1,6 +1,6 @@
 # Cityblocks
 
-Python project to:
+Python utility to:
 
 - Download global LCZ map from [Demuzere et al.](https://zenodo.org/records/7670653).
 - Extract an area of interest

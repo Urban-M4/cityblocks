@@ -1,0 +1,38 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: cityblocks
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Peter
+    family-names: Kalverla
+    email: p.kalverla@esciencecenter.nl
+    affiliation: Netherlands eScience Center
+    orcid: "https://orcid.org/0000-0002-5025-7862"
+  - given-names: Maurice
+    family-names: Kleijn
+    name-particle: de
+    email: m.dekleijn@esciencecenter.nl
+    affiliation: Netherlands eScience Center
+    orcid: "https://orcid.org/0000-0003-2379-191X"
+repository-code: "https://github.com/Urban-M4/cityblocks"
+abstract: >-
+  Python utility to:
+
+
+  - Download global LCZ map from [Demuzere et
+  al.](https://zenodo.org/records/7670653).
+
+  - Extract an area of interest
+
+  - Generate a new dataset where each pixel is replaced by a
+  2D tile corresponding to the LCZ type
+
+
+  The generated file can be displayed in QGIS to create
+  stunning visualizations in 3D.
+license: Apache-2.0
