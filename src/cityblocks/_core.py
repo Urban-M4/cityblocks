@@ -54,11 +54,6 @@ def extract_area(filename, bbox):
         )
         data = file.read(1, window=window)
 
-        import IPython
-
-        IPython.embed()
-        quit()
-
         # Get coordinates
         height, width = data.shape
         rows, cols = np.meshgrid(np.arange(height), np.arange(width), indexing="ij")
