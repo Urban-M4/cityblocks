@@ -14,7 +14,7 @@ The generated file can be displayed in QGIS to create stunning visualizations in
 # Install the tool
 pip install git+https://github.com/Urban-M4/cityblocks.git
 
-# Download global LCZ data
+# Download global LCZ data. 
 cityblocks download
 
 # Extract area of interest
@@ -24,7 +24,12 @@ cityblocks extract "4.724808,52.273620,5.182114,52.458729"
 cityblocks convert
 ```
 
-Then, import the dataset in QGIS and visualize it. We will add instructions and QGIS style specs to this repository shortly.
+Data is downloaded in folder where the command is executed.
+
+Then, import the dataset in QGIS and visualize it. We created a QGIS styling file [\qgis_files\cityblocks_LCZ.qml](cityblocks_LCZ.qml), which you can load as follows:
+
+
+
 
 ## Example output
 
