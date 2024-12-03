@@ -2,6 +2,7 @@ import numpy as np
 import rasterio
 import geopandas as gpd
 from shapely.affinity import translate
+from importlib.resources import files
 
 LCZ_HEIGHTS = {
     51: 37.5,
@@ -18,12 +19,12 @@ LCZ_HEIGHTS = {
 }
 
 # TODO: combine them in a single file?
-# TODO: make sure they're shipped with the package, or add to download
-_tile1 = gpd.read_file("lcz_tiles/tile_1_wgs84_51_52_53.gpkg").geometry.item()
-_tile2 = gpd.read_file("lcz_tiles/tile_2_wgs84_54_55_56.gpkg").geometry.item()
-_tile3 = gpd.read_file("lcz_tiles/tile_3_wgs84_58.gpkg").geometry.item()
-_tile4 = gpd.read_file("lcz_tiles/tile_4_wgs84_59.gpkg").geometry.item()
-_tile5 = gpd.read_file("lcz_tiles/tile_5_wgs84_60.gpkg").geometry.item()
+tiles = files("cityblocks")
+_tile1 = gpd.read_file(f"{tiles}/tile_1_wgs84_51_52_53.gpkg").geometry.item()
+_tile2 = gpd.read_file(f"{tiles}/tile_2_wgs84_54_55_56.gpkg").geometry.item()
+_tile3 = gpd.read_file(f"{tiles}/tile_3_wgs84_58.gpkg").geometry.item()
+_tile4 = gpd.read_file(f"{tiles}/tile_4_wgs84_59.gpkg").geometry.item()
+_tile5 = gpd.read_file(f"{tiles}/tile_5_wgs84_60.gpkg").geometry.item()
 LCZ_MULTIPOLYGONS = {
     51: _tile1,
     52: _tile1,

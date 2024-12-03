@@ -20,3 +20,6 @@ authors = [
 [project.scripts]
 cityblocks = "cityblocks.cli:cli"
 
+[tool.setuptools.package-data]
+cityblocks = ["*.gpkg"]
+
