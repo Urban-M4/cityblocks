@@ -18,6 +18,7 @@ LCZ_HEIGHTS = {
 }
 
 # TODO: combine them in a single file?
+# TODO: make sure they're shipped with the package, or add to download
 _tile1 = gpd.read_file("lcz_tiles/tile_1_wgs84_51_52_53.gpkg").geometry.item()
 _tile2 = gpd.read_file("lcz_tiles/tile_2_wgs84_54_55_56.gpkg").geometry.item()
 _tile3 = gpd.read_file("lcz_tiles/tile_3_wgs84_58.gpkg").geometry.item()
@@ -38,30 +39,8 @@ LCZ_MULTIPOLYGONS = {
 }
 
 
-def get_tile_at_coords(row):
-    """Look up the tile template and move it to the given coordinate.
-
-    Input is a row of a geopandas dataframe with columns "LCZ" and point
-    geometry. The points should represent grid cell centers.
-    """
-    # Extract information from dataframe row
-    lcz_type = row["LCZ"]
-    x = row.geometry.x
-    y = row.geometry.y
-
-    # Look up the tile template corresonding to the LCZ class
-    tile = LCZ_MULTIPOLYGONS.get(lcz_type)
-    tile_x = tile.centroid.x
-    tile_y = tile.centroid.y
-
-    # Return a copy of the tile centered on the given coordinate
-    return translate(tile, xoff=(x - tile_x), yoff=(y - tile_y))
-
-
-if __name__ == "__main__":
-    # http://bboxfinder.com/#52.273620,4.724808,52.458729,5.182114
-    filename = "../cityjson/CGLC_MODIS_LCZ.tif"
-    bbox = "4.724808,52.273620,5.182114,52.458729"
+def extract_area(filename, bbox):
+    """Extract area and store as geopackage."""
 
     with rasterio.open(filename) as file:
         west, south, east, north = map(float, bbox.split(","))
@@ -86,15 +65,57 @@ if __name__ == "__main__":
             columns=["LCZ"],
         )
 
-        # Discard non-urban landuse classes
-        gdf = gdf.where(gdf["LCZ"] > 50).dropna()
+        return gdf
 
-        # Add height column
-        gdf["height"] = gdf["LCZ"].map(LCZ_HEIGHTS).fillna(0)
 
-        # Add polygons
-        new_geometry = gdf.apply(get_tile_at_coords, axis=1)
-        gdf.geometry = new_geometry
+def _get_tile_at_coords(row):
+    """Look up the tile template and move it to the given coordinate."""
+    # Extract information from dataframe row
+    lcz_type = row["LCZ"]
+    x = row.geometry.x
+    y = row.geometry.y
 
-        # Save
-        gdf.to_file("lcz_subset.gpkg", driver="GPKG")
+    # Look up the tile template corresonding to the LCZ class
+    tile = LCZ_MULTIPOLYGONS.get(lcz_type)
+    tile_x = tile.centroid.x
+    tile_y = tile.centroid.y
+
+    # Return a copy of the tile centered on the given coordinate
+    return translate(tile, xoff=(x - tile_x), yoff=(y - tile_y))
+
+
+def substitute_tiles(gdf):
+    """Replace pixel coordinates with 2D tiles corresponding to the LCZ class.
+
+    Args:
+        gdf: geopandas dataframe with LCZ column and pixel coordinateas as
+        geometry.
+
+    Note:
+        Also adds a height column to the dataframe and discards any non-urban
+        pixels.
+    """
+    # Discard non-urban landuse classes
+    gdf = gdf.where(gdf["LCZ"] > 50).dropna()
+
+    # Add height column
+    gdf["height"] = gdf["LCZ"].map(LCZ_HEIGHTS).fillna(0)
+
+    # Add polygons
+    new_geometry = gdf.apply(_get_tile_at_coords, axis=1)
+    gdf.geometry = new_geometry
+
+    return gdf
+
+
+if __name__ == "__main__":
+    # http://bboxfinder.com/#52.273620,4.724808,52.458729,5.182114
+    filename = "../cityjson/CGLC_MODIS_LCZ.tif"
+    bbox = "4.724808,52.273620,5.182114,52.458729"
+
+    # Extract data
+    gdf = extract_area(filename, bbox)
+    gdf = substitute_tiles(gdf)
+
+    # Save
+    gdf.to_file("lcz_subset.gpkg", driver="GPKG")

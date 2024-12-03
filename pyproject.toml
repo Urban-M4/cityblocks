@@ -14,3 +14,4 @@ dependencies = [
 
 [project.scripts]
 cityblocks = "cityblocks.cli:cli"
+
