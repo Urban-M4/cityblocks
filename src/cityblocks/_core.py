@@ -107,16 +107,3 @@ def substitute_tiles(gdf):
     gdf.geometry = new_geometry
 
     return gdf
-
-
-if __name__ == "__main__":
-    # http://bboxfinder.com/#52.273620,4.724808,52.458729,5.182114
-    filename = "../cityjson/CGLC_MODIS_LCZ.tif"
-    bbox = "4.724808,52.273620,5.182114,52.458729"
-
-    # Extract data
-    gdf = extract_area(filename, bbox)
-    gdf = substitute_tiles(gdf)
-
-    # Save
-    gdf.to_file("lcz_subset.gpkg", driver="GPKG")
