@@ -26,9 +26,29 @@ cityblocks convert
 
 Data is downloaded in folder where the command is executed.
 
-Then, import the dataset in QGIS and visualize it. We created a QGIS styling file [\qgis_files\cityblocks_LCZ.qml](cityblocks_LCZ.qml), which you can load as follows:
 
+## QGIS styling
+Then, import the dataset in QGIS and visualize it. We created a QGIS styling file [cityblocks_LCZ.qml](\qgis_files\cityblocks_LCZ.qml), which you can load as follows:
 
+1. Load layer in [QGIS](https://qgis.org/) (we used 3.34.8 LTR)
+![Load layer in QGIS](images/1.png)
+
+2. Go to properties:
+![Go to properties](images/2.png)
+
+3. Load Style from [cityblocks_LCZ.qml](\qgis_files\cityblocks_LCZ.qml) 
+![Load style](images/3.png) 
+
+4. You can modify the style as you like 
+![modify the style](images/4.png)
+
+5. Create a 3D map view
+![Create a 3D map view](images/5.png)
+
+6. Browse through you Local Climate Zones Cityblocks!
+![Go to properties](images/6.png)
+
+Note that you can add styled 2D layers in your QGIS environment to show them in your 3D render.
 
 
 ## Example output
