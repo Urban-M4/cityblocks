@@ -12,7 +12,7 @@ The generated file can be displayed in QGIS to create stunning visualizations in
 
 ```sh
 # Install the tool
-pip install cityblocks
+pip install git+https://github.com/Urban-M4/cityblocks.git
 
 # Download global LCZ data
 cityblocks download
