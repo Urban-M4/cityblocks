@@ -17,6 +17,7 @@ LCZ_HEIGHTS = {
     61: 10.0,
 }
 
+# TODO: combine them in a single file?
 _tile1 = gpd.read_file("lcz_tiles/tile_1_wgs84_51_52_53.gpkg").geometry.item()
 _tile2 = gpd.read_file("lcz_tiles/tile_2_wgs84_54_55_56.gpkg").geometry.item()
 _tile3 = gpd.read_file("lcz_tiles/tile_3_wgs84_58.gpkg").geometry.item()

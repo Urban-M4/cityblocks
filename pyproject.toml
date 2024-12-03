@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cityblocks"
+version = "0.0.1"
+dependencies = [
+    "geopandas",
+    "numpy",
+    "rasterio",
+    "shapely",
+]
+
+[project.scripts]
+cityblocks = "cityblocks.cli:cli"
