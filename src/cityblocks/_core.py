@@ -47,7 +47,11 @@ def extract_area(filename, bbox):
         west, south, east, north = map(float, bbox.split(","))
 
         # Extract window
-        window = rasterio.windows.from_bounds(west, south, east, north, file.transform)
+        window = (
+            rasterio.windows.from_bounds(west, south, east, north, file.transform)
+            .round_offsets()
+            .round_lengths()
+        )
         data = file.read(1, window=window)
 
         # Get coordinates
