@@ -1,3 +1,8 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14273287.svg)](https://doi.org/10.5281/zenodo.14273287)
+![PyPI - Version](https://img.shields.io/pypi/v/cityblocks)
+[![Research Software Directory](https://img.shields.io/badge/RSD-cityblocks-00a3e3.svg)](https://research-software-directory.org/software/cityblocks)
+
+
 # Cityblocks
 
 Python utility to:
@@ -12,7 +17,7 @@ The generated file can be displayed in QGIS to create stunning visualizations in
 
 ```sh
 # Install the tool
-pip install git+https://github.com/Urban-M4/cityblocks.git
+pip install cityblocks
 
 # Download global LCZ data. 
 cityblocks download
