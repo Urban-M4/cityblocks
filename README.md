@@ -13,6 +13,8 @@ Python utility to:
 
 The generated file can be displayed in QGIS to create stunning visualizations in 3D.
 
+See our [blog post](https://blog.esciencecenter.nl/amsterdam-as-seen-by-a-weather-model-b609a340cde4) and article in the [IAUC newletter](https://urban-climate.org/wp-content/uploads/2025/01/IAUC092.pdf) for the broarder context in which this was developed.
+
 ## How to use
 
 ```sh
